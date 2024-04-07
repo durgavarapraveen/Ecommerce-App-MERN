@@ -25,7 +25,9 @@ app.use(cors(corsOptions));
 app.use(morgan("dev"));
 app.use(express.json());
 
-app.use("/", res.send("Backend Deployed Successfully"));
+app.use("/", (req, res) => {
+  res.send("Server is running");
+});
 
 //routes
 app.use("/api/v1/auth", authRoute);
