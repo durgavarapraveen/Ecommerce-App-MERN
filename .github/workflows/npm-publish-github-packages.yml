@@ -6,6 +6,9 @@ name: Node.js Package
 on:
   release:
     types: [created]
+  pull_request:
+    branches:
+      -  main
 
 jobs:
   build:
@@ -21,6 +24,7 @@ jobs:
   publish-gpr:
     needs: build
     runs-on: ubuntu-latest
+    if: github.event_name == 'release'
     permissions:
       contents: read
       packages: write
